@@ -1,0 +1,70 @@
+Mathpix is a tool generating from pictures or PDF Latex code but it has some limitations and we have to adapt them sometimes
+
+On enumerations, it will usually do 
+
+1. Text lorem ipsum
+2. Text lorem ipsum
+a) Text lorem ipsum
+b) Text lorem ipsum
+c) Text lorem ipsum
+3. Text lorem ipsum
+
+Or
+
+1. Text lorem ipsum
+2. Text lorem ipsum
+a. Text lorem ipsum
+b. Text lorem ipsum
+c. Text lorem ipsum
+3. Text lorem ipsum
+
+Sometimes you may encounter onelined: 1) a) text; b) text; c) text; 2) text; 3) a) text; b) text; c) text; 4) text
+
+These we have to replace with begin enumerate and use nested enumarte with no labels as latex is able to handle, so we will have:
+
+\begin{enumerate}
+\item Text lorem ipsum
+\item Text lorem ipsum
+\begin{enumerate}
+\item Text lorem ipsum
+\item Text lorem ipsum
+\item Text lorem ipsum
+\end{enumerate}
+\item Text lorem ipsum
+\end{enumerate}
+
+Mathpix also doesn't handle itemize:
+
+- Text lorem ipsum
+- Text lorem ipsum
+- Text lorem ipsum
+
+This shall be replaced with:
+
+\begin{itemize}
+\item Text lorem ipsum
+\item Text lorem ipsum
+\item Text lorem ipsum
+\end{itemize}
+
+In case of figures it generaly puts a simple:
+
+\includegraphics[width=0.8\textwidth]{89543279854397.jpg}
+
+We have to replace it with a figure environment and add a caption, so we will have:
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{89543279854397.jpg}
+\end{figure}
+
+If you see something like this:
+
+```
+text or equation
+141
+```
+
+usually the isolated number (single number on a line) is a page number, so we will remove it.
+
